@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Notes - Notes App{% endblock %}
+
+{% block content %}
+    <section class="notes-list">
+        <h2>Available Notes</h2>
+        <p>Browse and download notes without logging in.</p>
+        
+        {% if notes %}
+            <div class="notes-grid">
+                {% for note in notes %}
+                    <div class="note-card">
+                        <h3>{{ note.title }}</h3>
+                        <p class="description">{{ note.description }}</p>
+                        <p class="meta">Uploaded on: {{ note.uploaded_at[:10] }}</p>
+                        <div class="card-actions">
+                            <a href="{{ url_for('download_note', note_id=note._id) }}" class="btn primary">Download</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-items">No notes are available for download yet.</p>
+        {% endif %}
+    </section>
+{% endblock %}

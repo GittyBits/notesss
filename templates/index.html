@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Notes App{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <h2>Welcome to Notes App</h2>
+        <p>A simple platform for sharing and accessing notes.</p>
+        <div class="actions">
+            <a href="{{ url_for('notes') }}" class="btn primary">View Notes</a>
+            {% if not session.get('logged_in') %}
+                <a href="{{ url_for('login') }}" class="btn secondary">Admin Login</a>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h3>Simple Access</h3>
+            <p>Download notes without login - open for everyone.</p>
+        </div>
+        <div class="feature">
+            <h3>Secure Admin Area</h3>
+            <p>Authenticated admins can upload and manage notes.</p>
+        </div>
+        <div class="feature">
+            <h3>Organized Content</h3>
+            <p>All notes are organized and easily searchable.</p>
+        </div>
+    </section>
+{% endblock %}
